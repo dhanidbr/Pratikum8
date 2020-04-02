@@ -19,38 +19,34 @@ class FirstFragment : Fragment(){
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(
-            R.layout.fragment_first,
-            container, false
-        )
+        return inflater.inflate(R.layout.fragment_first, container, false)
     }
 
-    override fun onViewCreated(
-        view: View,
-        savedInstanceState: Bundle?
-    ) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val nameEditText = view.findViewById<TextInputEditText>(R.id.textInputTextName)
-        nameEditText.addTextChangedListener(
-            object : TextWatcher {
-                override fun beforeTextChanged(
-                    charSequence: CharSequence, i: Int, i1: Int, i2: Int
-                ) {
-                }
+        // nameEditText
+        setnamewhentextchanged(view.findViewById<TextInputEditText>(R.id.textInputTextName), "Name")
+        // descEditText
+        setnamewhentextchanged(view.findViewById<TextInputEditText>(R.id.textInputTextNpm), "Desc")
 
-                override fun onTextChanged(
-                    charSequence: CharSequence,
-                    i: Int, i1: Int, i2: Int
-                ) {
+    }
+
+    fun setnamewhentextchanged(txtinput: TextInputEditText, type: String) {
+        txtinput.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+                if (type == "Name") {
                     communicationViewModel!!.setName(charSequence.toString())
+                } else if (type == "Desc") {
+                    communicationViewModel!!.setNpm(charSequence.toString())
                 }
+            }
 
-                override fun afterTextChanged(editable: Editable) {
-                }
-            })
+            override fun afterTextChanged(editable: Editable) {}
+        })
     }
 
     companion object {

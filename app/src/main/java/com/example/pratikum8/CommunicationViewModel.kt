@@ -6,10 +6,15 @@ import androidx.lifecycle.ViewModel
 
 class CommunicationViewModel : ViewModel() {
     private val mName = MutableLiveData<String>()
-    val name: LiveData<String>
-        get() = mName
+    private val mNPM = MutableLiveData<String>()
+    val name: LiveData<String> get() = mName
+    val npm: LiveData<String> get() = mNPM
 
     fun setName(name: String) {
         mName.value = name
+    }
+
+    fun setNpm(npm: String){
+        mNPM.value = npm
     }
 }

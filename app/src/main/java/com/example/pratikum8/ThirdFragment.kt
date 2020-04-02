@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
-class SecondFragment : Fragment() {
+class ThirdFragment : Fragment() {
     private var communicationViewModel: CommunicationViewModel? = null
-    private var txtName: TextView? = null
+    private var txtNPM: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         communicationViewModel =
@@ -30,14 +30,14 @@ class SecondFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        txtName = view.findViewById(R.id.textViewNPM)
-        communicationViewModel!!.name.observe(requireActivity(),
-            Observer { s -> txtName!!.text = s })
+        txtNPM = view.findViewById(R.id.textViewNPM)
+        communicationViewModel!!.npm.observe(requireActivity(),
+            Observer { s -> txtNPM!!.text = s })
     }
 
     companion object {
-        fun newInstance(): SecondFragment {
-            return SecondFragment()
+        fun newInstance(): ThirdFragment {
+            return ThirdFragment()
         }
     }
 }
